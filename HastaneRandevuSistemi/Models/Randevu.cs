@@ -6,11 +6,16 @@ namespace HastaneRandevuSistemi.Models
 {
     public class Randevu
     {
-        [Key]
-        public int No { get; set; }
-        public Doktor Doktor { get; set; }
-        public Poliklinik Poliklinik { get; set; }
-        public string Hasta_adi { get; set; }
-        public DateTime RandevuGunu { get; set; }
+        public int randevuID { get; set; }
+        public int kullaniciID { get; set; }
+        public int doktorID { get; set; }
+        public string randevuTARIH { get; set; }
+        public string randevuSAAT { get; set; }
+        public Nullable<int> randevuTUR { get; set; }
+        public List<string> list { get; set; }
+
+        public virtual Doktor doktorlar { get; set; }
+        public virtual RandevuTur tur { get; set; }
+        public virtual Kullanici kullanici { get; set; }
     }
 }

@@ -5,8 +5,20 @@ namespace HastaneRandevuSistemi.Models
 {
     public class Poliklinik
     {
-        [Key]
-        public int PolId { get; set; }
-        public string PolAd { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Poliklinik()
+        {
+            this.doktorlar = new HashSet<Doktor>();
+        }
+
+        public int polID { get; set; }
+        public string polAD { get; set; }
+        public Nullable<int> hastaneID { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Doktor> doktorlar { get; set; }
+        public virtual Hastaneler hastaneler { get; set; }
+
+
     }
 }
