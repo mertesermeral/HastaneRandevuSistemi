@@ -9,5 +9,6 @@ namespace HastaneRandevuSistemi.Models
         public string DoktorAd { get; set; }
         public Poliklinik Poliklinik { get; set; }
         //güncellendi
+        //mertesermeral
     }
 }
