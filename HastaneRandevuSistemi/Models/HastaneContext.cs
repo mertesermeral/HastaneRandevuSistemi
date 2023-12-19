@@ -4,12 +4,12 @@ namespace HastaneRandevuSistemi.Models
 {
     public class HastaneContext: DbContext
     {
-        public DbSet<Doktor> Doktorlar { get; set; }
-        public DbSet<Poliklinik> Poliklinikler { get; set; }
-        public DbSet<Randevu> Randevular { get; set; }
-        public DbSet<Hastaneler> Hastaneler { get; set; }
-        public DbSet<Ilceler> Ilceler {  get; set; }
-        public DbSet<Kullanici> Kullanicilar {  get; set; }
+        public DbSet<Doktor> Doktor { get; set; }
+        public DbSet<Poliklinik> Poliklinik { get; set; }
+        public DbSet<Randevu> Randevu { get; set; }
+        public DbSet<Hastaneler> Hastane { get; set; }
+        public DbSet<Ilceler> Ilce {  get; set; }
+        public DbSet<Kullanici> Kullanici {  get; set; }
         public DbSet<Personel> Personel { get; set; }
         public DbSet<RandevuTur> RandevuTur { get; set; }
         public DbSet<Sehirler> Sehirler { get; set; }

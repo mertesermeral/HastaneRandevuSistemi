@@ -19,8 +19,9 @@ namespace HastaneRandevuSistemi.Models
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public ICollection<Doktor> Doktorlar { get; set; }
-        public Ilceler ılceler { get; set; }
-        public Sehirler sehirler { get; set; }
+        public Ilceler Ilceler { get; set; }
+
+        public Sehirler Sehirler { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public ICollection<Poliklinik> Poliklinikler { get; set; }
