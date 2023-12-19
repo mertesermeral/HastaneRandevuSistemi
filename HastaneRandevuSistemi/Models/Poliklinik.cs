@@ -10,7 +10,7 @@ namespace HastaneRandevuSistemi.Models
         {
             this.doktorlar = new HashSet<Doktor>();
         }
-
+        [Key]
         public int polID { get; set; }
         public string polAD { get; set; }
         public Nullable<int> hastaneID { get; set; }

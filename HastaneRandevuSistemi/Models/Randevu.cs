@@ -12,7 +12,6 @@ namespace HastaneRandevuSistemi.Models
         public string randevuTARIH { get; set; }
         public string randevuSAAT { get; set; }
         public Nullable<int> randevuTUR { get; set; }
-        public List<string> list { get; set; }
 
         public virtual Doktor doktorlar { get; set; }
         public virtual RandevuTur tur { get; set; }

@@ -1,4 +1,6 @@
-﻿namespace HastaneRandevuSistemi.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace HastaneRandevuSistemi.Models
 {
     public class Ilceler
     {
@@ -7,7 +9,7 @@
         {
             this.hastaneler = new HashSet<Hastaneler>();
         }
-
+        [Key]
         public int ilceID { get; set; }
         public int sehirID { get; set; }
         public string ilceAD { get; set; }

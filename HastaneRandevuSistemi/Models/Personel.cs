@@ -5,6 +5,7 @@ namespace HastaneRandevuSistemi.Models
     public class Personel
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        [Key]
         public int PID { get; set; }
         [Required(ErrorMessage = "Lütfen Adınızı Giriniz", AllowEmptyStrings = false)]
         public string PUsername { get; set; }

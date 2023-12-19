@@ -1,4 +1,6 @@
-﻿namespace HastaneRandevuSistemi.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace HastaneRandevuSistemi.Models
 {
     public class RandevuTur
     {
@@ -7,7 +9,7 @@
         {
             this.randevular = new HashSet<Randevu>();
         }
-
+        [Key]
         public int randevuTUR { get; set; }
         public string randevuAD { get; set; }
 

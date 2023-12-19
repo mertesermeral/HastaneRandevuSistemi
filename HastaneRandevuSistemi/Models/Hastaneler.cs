@@ -1,4 +1,7 @@
-﻿namespace HastaneRandevuSistemi.Models
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace HastaneRandevuSistemi.Models
 {
     public class Hastaneler
     {
@@ -8,6 +11,7 @@
             this.Doktorlar = new HashSet<Doktor>();
             this.Poliklinikler = new HashSet<Poliklinik>();
         }
+        [Key]
         public int hastaneID { get; set; }
         public int sehirID { get; set; }
         public int ilceID { get; set; }
