@@ -1,7 +1,7 @@
 ﻿using HastaneRandevuSistemi.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
-
+// deneme
 namespace HastaneRandevuSistemi.Controllers
 {
     public class HomeController : Controller
