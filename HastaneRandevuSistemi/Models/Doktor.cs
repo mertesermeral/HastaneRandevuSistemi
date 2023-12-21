@@ -21,20 +21,9 @@ namespace HastaneRandevuSistemi.Models
         public Hastaneler Hastane { get; set; }
 
 
+        public ICollection<Randevu> Randevular { get; set; }   
 
-      
-
-        // Navigation Properties
-
-        //public int? RandevuID { get; set; }
-        public ICollection<Randevu> Randevular { get; set; }   //bir-cok
-
-
-
-        //public int? KullaniciID { get; set; }
         public ICollection<Kullanici> Kullanicilar { get; set; }
-
-
 
     }
 }

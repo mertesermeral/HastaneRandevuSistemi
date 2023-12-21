@@ -15,18 +15,6 @@ namespace HastaneRandevuSistemi.Models
         [Required]
         public string IlceAd { get; set; }
 
-
-
-        // Foreign Key
-        //[ForeignKey("SehirID")]
-
-        // Navigation Property
-
-        //public virtual Sehirler Sehirler { get; set; }
-        // public ICollection<Sehirler> sehirlers { get; set; }
-
-        // public Sehirler Sehirler { get; set; }
-
         public ICollection<Hastaneler> Hastaneler { get; set; }
 
     }
