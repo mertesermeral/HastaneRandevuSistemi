@@ -14,14 +14,14 @@ namespace HastaneRandevuSistemi.Models
         [Key]
         public int HastaneID { get; set; }
 
-        //[Required]
+    
         public string HastaneAd { get; set; }
 
 
 
 
 
-        // Navigation Properties
+        
         //[ForeignKey("IlceID")]
         public int? IlceId { get; set; }
         //public Ilceler Ilceler { get; set; }
@@ -29,7 +29,7 @@ namespace HastaneRandevuSistemi.Models
 
 
 
-        // [ForeignKey("SehirID")]
+       [ForeignKey("SehirID")]
         public int SehirId { get; set; }
         // public Sehirler Sehirler { get; set; }
 
@@ -41,6 +41,8 @@ namespace HastaneRandevuSistemi.Models
         public virtual ICollection<Doktor> Doktorlar { get; set; }
         // Daha fazla ilişki eklenebilir
 
+
+        public int? PolID { get; set; }
         public ICollection<Poliklinik> Poliklinikler { get; set; }
 
     }

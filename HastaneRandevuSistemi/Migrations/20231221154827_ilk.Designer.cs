@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HastaneRandevuSistemi.Migrations
 {
     [DbContext(typeof(HastaneContext))]
-    [Migration("20231221144757_ilk")]
+    [Migration("20231221154827_ilk")]
     partial class ilk
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -54,7 +54,7 @@ namespace HastaneRandevuSistemi.Migrations
                     b.Property<int>("HastaneID")
                         .HasColumnType("int");
 
-                    b.Property<int?>("KullanicID")
+                    b.Property<int?>("KullaniciID")
                         .HasColumnType("int");
 
                     b.Property<int>("PolID")
@@ -91,6 +91,9 @@ namespace HastaneRandevuSistemi.Migrations
                         .HasColumnType("int");
 
                     b.Property<int?>("IlcelerID")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("PolID")
                         .HasColumnType("int");
 
                     b.Property<int>("SehirId")

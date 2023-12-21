@@ -52,7 +52,7 @@ namespace HastaneRandevuSistemi.Migrations
                     b.Property<int>("HastaneID")
                         .HasColumnType("int");
 
-                    b.Property<int?>("KullanicID")
+                    b.Property<int?>("KullaniciID")
                         .HasColumnType("int");
 
                     b.Property<int>("PolID")
@@ -89,6 +89,9 @@ namespace HastaneRandevuSistemi.Migrations
                         .HasColumnType("int");
 
                     b.Property<int?>("IlcelerID")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("PolID")
                         .HasColumnType("int");
 
                     b.Property<int>("SehirId")

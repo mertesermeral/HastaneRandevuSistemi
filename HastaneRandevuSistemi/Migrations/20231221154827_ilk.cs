@@ -97,6 +97,7 @@ namespace HastaneRandevuSistemi.Migrations
                     HastaneAd = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     IlceId = table.Column<int>(type: "int", nullable: true),
                     SehirId = table.Column<int>(type: "int", nullable: false),
+                    PolID = table.Column<int>(type: "int", nullable: true),
                     IlcelerID = table.Column<int>(type: "int", nullable: true),
                     SehirlerSehirID = table.Column<int>(type: "int", nullable: true)
                 },
@@ -145,7 +146,7 @@ namespace HastaneRandevuSistemi.Migrations
                     PolID = table.Column<int>(type: "int", nullable: false),
                     PoliklinikPolID = table.Column<int>(type: "int", nullable: false),
                     RandevuID = table.Column<int>(type: "int", nullable: true),
-                    KullanicID = table.Column<int>(type: "int", nullable: true)
+                    KullaniciID = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
