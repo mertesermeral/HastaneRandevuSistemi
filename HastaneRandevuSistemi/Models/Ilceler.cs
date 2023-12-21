@@ -19,7 +19,6 @@ namespace HastaneRandevuSistemi.Models
 
         // Foreign Key
         //[ForeignKey("SehirID")]
-        public int SehirID { get; set; }
 
         // Navigation Property
 

@@ -22,18 +22,16 @@ namespace HastaneRandevuSistemi.Models
 
 
 
-        public int PolID { get; set; }
-
-        public Poliklinik Poliklinik { get; set; }   //bire-bir
+      
 
         // Navigation Properties
 
-        public int? RandevuID { get; set; }
+        //public int? RandevuID { get; set; }
         public ICollection<Randevu> Randevular { get; set; }   //bir-cok
 
 
 
-        public int? KullaniciID { get; set; }
+        //public int? KullaniciID { get; set; }
         public ICollection<Kullanici> Kullanicilar { get; set; }
 
 

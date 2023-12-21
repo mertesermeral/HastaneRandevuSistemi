@@ -23,8 +23,8 @@ namespace HastaneRandevuSistemi.Models
         [ForeignKey("KullaniciID")]
         public virtual Kullanici Kullanici { get; set; }
 
-        public Nullable<int> RandevuTUR { get; set; }
-        public virtual RandevuTur tur { get; set; }
+        //public Nullable<int> RandevuTUR { get; set; }
+        //public  RandevuTur RandevuTur { get; set; }
 
 
         [ForeignKey("DoktorId")]

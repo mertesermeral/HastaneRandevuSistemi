@@ -23,15 +23,15 @@ namespace HastaneRandevuSistemi.Models
 
         
         //[ForeignKey("IlceID")]
-        public int? IlceId { get; set; }
+        //public int? IlceId { get; set; }
         //public Ilceler Ilceler { get; set; }
 
 
 
 
-       [ForeignKey("SehirID")]
-        public int SehirId { get; set; }
-        // public Sehirler Sehirler { get; set; }
+       //[ForeignKey("SehirID")]
+        //public int SehirId { get; set; }
+        
 
 
 
@@ -42,7 +42,7 @@ namespace HastaneRandevuSistemi.Models
         // Daha fazla ilişki eklenebilir
 
 
-        public int? PolID { get; set; }
+        //public int? PolID { get; set; }
         public ICollection<Poliklinik> Poliklinikler { get; set; }
 
     }

@@ -23,8 +23,8 @@ namespace HastaneRandevuSistemi.Models
         [Required(ErrorMessage = "Lütfen Şifrenizi Giriniz", AllowEmptyStrings = false)]
         [DataType(System.ComponentModel.DataAnnotations.DataType.Password)]
         [StringLength(50, MinimumLength = 6, ErrorMessage = "Şifreniz en az 6 hane olmalıdır")]
-        public string ullaniciSifre { get; set; }
-        [Compare("kullaniciSIFRE", ErrorMessage = "Şifre eşleşmiyor")]
+        public string KullaniciSifre { get; set; }
+        [Compare("KullaniciSifre", ErrorMessage = "Şifre eşleşmiyor")]
         [DataType(System.ComponentModel.DataAnnotations.DataType.Password)]
         public int AilehID { get; set; }
 
