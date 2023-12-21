@@ -7,16 +7,28 @@ namespace HastaneRandevuSistemi.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Ilceler()
         {
-            this.hastaneler = new HashSet<Hastaneler>();
+            this.Hastaneler = new HashSet<Hastaneler>();
         }
         [Key]
-        public int ilceID { get; set; }
-        public int sehirID { get; set; }
-        public string ilceAD { get; set; }
+        public int IlcelerID { get; set; }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Hastaneler> hastaneler { get; set; }
-        public Sehirler sehirler { get; set; }
+        [Required]
+        public string IlceAd { get; set; }
+
+
+
+        // Foreign Key
+        //[ForeignKey("SehirID")]
+        public int SehirID { get; set; }
+
+        // Navigation Property
+
+        //public virtual Sehirler Sehirler { get; set; }
+        // public ICollection<Sehirler> sehirlers { get; set; }
+
+        // public Sehirler Sehirler { get; set; }
+
+        public ICollection<Hastaneler> Hastaneler { get; set; }
 
     }
 }

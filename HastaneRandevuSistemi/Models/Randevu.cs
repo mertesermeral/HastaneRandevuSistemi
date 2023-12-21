@@ -6,15 +6,29 @@ namespace HastaneRandevuSistemi.Models
 {
     public class Randevu
     {
-        public int randevuID { get; set; }
-        public int kullaniciID { get; set; }
-        public int doktorID { get; set; }
-        public string randevuTARIH { get; set; }
-        public string randevuSAAT { get; set; }
-        public Nullable<int> randevuTUR { get; set; }
+        [Key]
+        public int RandevuID { get; set; }
 
-        public virtual Doktor doktorlar { get; set; }
+        // [Required]
+        public DateTime RandevuTarih { get; set; }
+
+        //[Required]
+        public string RandevuSaat { get; set; }
+
+        // Foreign Key
+        public int KullaniciID { get; set; }
+
+
+        // Navigation Properties
+        [ForeignKey("KullaniciID")]
+        public virtual Kullanici Kullanici { get; set; }
+
+        public Nullable<int> RandevuTUR { get; set; }
         public virtual RandevuTur tur { get; set; }
-        public virtual Kullanici kullanici { get; set; }
+
+
+        [ForeignKey("DoktorId")]
+        public int DoktorID { get; set; }
+        public Doktor Doktor { get; set; }
     }
 }

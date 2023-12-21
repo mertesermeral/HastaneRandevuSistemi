@@ -6,24 +6,42 @@ namespace HastaneRandevuSistemi.Models
     public class Hastaneler
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Hastaneler() 
+        public Hastaneler()
         {
             this.Doktorlar = new HashSet<Doktor>();
             this.Poliklinikler = new HashSet<Poliklinik>();
         }
         [Key]
-        public int hastaneID { get; set; }
-        public int sehirID { get; set; }
-        public int ilceID { get; set; }
-        public string hastaneAD { get; set;}
+        public int HastaneID { get; set; }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public ICollection<Doktor> Doktorlar { get; set; }
-        public Ilceler Ilceler { get; set; }
+        //[Required]
+        public string HastaneAd { get; set; }
 
-        public Sehirler Sehirler { get; set; }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+
+
+
+        // Navigation Properties
+        //[ForeignKey("IlceID")]
+        public int? IlceId { get; set; }
+        //public Ilceler Ilceler { get; set; }
+
+
+
+
+        // [ForeignKey("SehirID")]
+        public int SehirId { get; set; }
+        // public Sehirler Sehirler { get; set; }
+
+
+
+
+
+        // Diğer ilişkiler
+        public virtual ICollection<Doktor> Doktorlar { get; set; }
+        // Daha fazla ilişki eklenebilir
+
         public ICollection<Poliklinik> Poliklinikler { get; set; }
+
     }
 }

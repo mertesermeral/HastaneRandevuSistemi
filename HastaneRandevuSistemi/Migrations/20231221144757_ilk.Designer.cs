@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HastaneRandevuSistemi.Migrations
 {
     [DbContext(typeof(HastaneContext))]
-    [Migration("20231219203336_ilk")]
+    [Migration("20231221144757_ilk")]
     partial class ilk
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -24,134 +24,147 @@ namespace HastaneRandevuSistemi.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
+            modelBuilder.Entity("DoktorKullanici", b =>
+                {
+                    b.Property<int>("DoktorlarDoktorID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("KullanicilarKullaniciID")
+                        .HasColumnType("int");
+
+                    b.HasKey("DoktorlarDoktorID", "KullanicilarKullaniciID");
+
+                    b.HasIndex("KullanicilarKullaniciID");
+
+                    b.ToTable("DoktorKullanici");
+                });
+
             modelBuilder.Entity("HastaneRandevuSistemi.Models.Doktor", b =>
                 {
-                    b.Property<int>("doktorID")
+                    b.Property<int>("DoktorID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("doktorID"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("DoktorID"), 1L, 1);
 
-                    b.Property<string>("doktorAD")
+                    b.Property<string>("DoktorAd")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("hastaneID")
+                    b.Property<int>("HastaneID")
                         .HasColumnType("int");
 
-                    b.Property<int>("hastanelerhastaneID")
+                    b.Property<int?>("KullanicID")
                         .HasColumnType("int");
 
-                    b.Property<int>("polID")
+                    b.Property<int>("PolID")
                         .HasColumnType("int");
 
-                    b.Property<int>("polikliniklerpolID")
+                    b.Property<int>("PoliklinikPolID")
                         .HasColumnType("int");
 
-                    b.HasKey("doktorID");
+                    b.Property<int?>("RandevuID")
+                        .HasColumnType("int");
 
-                    b.HasIndex("hastanelerhastaneID");
+                    b.HasKey("DoktorID");
 
-                    b.HasIndex("polikliniklerpolID");
+                    b.HasIndex("HastaneID");
+
+                    b.HasIndex("PoliklinikPolID");
 
                     b.ToTable("Doktor");
                 });
 
             modelBuilder.Entity("HastaneRandevuSistemi.Models.Hastaneler", b =>
                 {
-                    b.Property<int>("hastaneID")
+                    b.Property<int>("HastaneID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("hastaneID"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("HastaneID"), 1L, 1);
 
-                    b.Property<int>("IlcelerilceID")
-                        .HasColumnType("int");
-
-                    b.Property<int>("SehirlersehirID")
-                        .HasColumnType("int");
-
-                    b.Property<string>("hastaneAD")
+                    b.Property<string>("HastaneAd")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("ilceID")
+                    b.Property<int?>("IlceId")
                         .HasColumnType("int");
 
-                    b.Property<int>("sehirID")
+                    b.Property<int?>("IlcelerID")
                         .HasColumnType("int");
 
-                    b.HasKey("hastaneID");
+                    b.Property<int>("SehirId")
+                        .HasColumnType("int");
 
-                    b.HasIndex("IlcelerilceID");
+                    b.Property<int?>("SehirlerSehirID")
+                        .HasColumnType("int");
 
-                    b.HasIndex("SehirlersehirID");
+                    b.HasKey("HastaneID");
+
+                    b.HasIndex("IlcelerID");
+
+                    b.HasIndex("SehirlerSehirID");
 
                     b.ToTable("Hastane");
                 });
 
             modelBuilder.Entity("HastaneRandevuSistemi.Models.Ilceler", b =>
                 {
-                    b.Property<int>("ilceID")
+                    b.Property<int>("IlcelerID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ilceID"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IlcelerID"), 1L, 1);
 
-                    b.Property<string>("ilceAD")
+                    b.Property<string>("IlceAd")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("sehirID")
+                    b.Property<int>("SehirID")
                         .HasColumnType("int");
 
-                    b.Property<int>("sehirlersehirID")
+                    b.Property<int?>("SehirlerSehirID")
                         .HasColumnType("int");
 
-                    b.HasKey("ilceID");
+                    b.HasKey("IlcelerID");
 
-                    b.HasIndex("sehirlersehirID");
+                    b.HasIndex("SehirlerSehirID");
 
                     b.ToTable("Ilce");
                 });
 
             modelBuilder.Entity("HastaneRandevuSistemi.Models.Kullanici", b =>
                 {
-                    b.Property<int>("kullaniciID")
+                    b.Property<int>("KullaniciID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("kullaniciID"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("KullaniciID"), 1L, 1);
 
-                    b.Property<int>("ailehID")
+                    b.Property<int>("AilehID")
                         .HasColumnType("int");
 
-                    b.Property<int>("doktorlardoktorID")
-                        .HasColumnType("int");
-
-                    b.Property<string>("kullaniciAD")
+                    b.Property<string>("KullaniciAd")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("kullaniciDOGUM")
+                    b.Property<DateTime>("KullaniciDogum")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("kullaniciSIFRE")
+                    b.Property<string>("KullaniciSoyad")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("KullaniciTC")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ullaniciSifre")
                         .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<string>("kullaniciSOYAD")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("kullaniciTC")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("kullaniciID");
-
-                    b.HasIndex("doktorlardoktorID");
+                    b.HasKey("KullaniciID");
 
                     b.ToTable("Kullanici");
                 });
@@ -180,205 +193,192 @@ namespace HastaneRandevuSistemi.Migrations
 
             modelBuilder.Entity("HastaneRandevuSistemi.Models.Poliklinik", b =>
                 {
-                    b.Property<int>("polID")
+                    b.Property<int>("PolID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("polID"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PolID"), 1L, 1);
 
-                    b.Property<int?>("hastaneID")
+                    b.Property<int?>("HastaneID")
                         .HasColumnType("int");
 
-                    b.Property<int>("hastanelerhastaneID")
-                        .HasColumnType("int");
-
-                    b.Property<string>("polAD")
+                    b.Property<string>("PolAd")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("polID");
+                    b.HasKey("PolID");
 
-                    b.HasIndex("hastanelerhastaneID");
+                    b.HasIndex("HastaneID");
 
                     b.ToTable("Poliklinik");
                 });
 
             modelBuilder.Entity("HastaneRandevuSistemi.Models.Randevu", b =>
                 {
-                    b.Property<int>("randevuID")
+                    b.Property<int>("RandevuID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("randevuID"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("RandevuID"), 1L, 1);
 
-                    b.Property<int>("doktorID")
+                    b.Property<int>("DoktorID")
                         .HasColumnType("int");
 
-                    b.Property<int>("kullaniciID")
+                    b.Property<int>("KullaniciID")
                         .HasColumnType("int");
 
-                    b.Property<string>("randevuSAAT")
+                    b.Property<string>("RandevuSaat")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("randevuTARIH")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("randevuTUR")
+                    b.Property<int?>("RandevuTUR")
                         .HasColumnType("int");
 
-                    b.Property<int>("turrandevuTUR")
+                    b.Property<DateTime>("RandevuTarih")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("turRandevuTUR")
                         .HasColumnType("int");
 
-                    b.HasKey("randevuID");
+                    b.HasKey("RandevuID");
 
-                    b.HasIndex("doktorID");
+                    b.HasIndex("DoktorID");
 
-                    b.HasIndex("kullaniciID");
+                    b.HasIndex("KullaniciID");
 
-                    b.HasIndex("turrandevuTUR");
+                    b.HasIndex("turRandevuTUR");
 
                     b.ToTable("Randevu");
                 });
 
             modelBuilder.Entity("HastaneRandevuSistemi.Models.RandevuTur", b =>
                 {
-                    b.Property<int>("randevuTUR")
+                    b.Property<int>("RandevuTUR")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("randevuTUR"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("RandevuTUR"), 1L, 1);
 
-                    b.Property<string>("randevuAD")
+                    b.Property<string>("randevuAd")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("randevuTUR");
+                    b.HasKey("RandevuTUR");
 
                     b.ToTable("RandevuTur");
                 });
 
             modelBuilder.Entity("HastaneRandevuSistemi.Models.Sehirler", b =>
                 {
-                    b.Property<int>("sehirID")
+                    b.Property<int>("SehirID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("sehirID"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("SehirID"), 1L, 1);
 
-                    b.Property<string>("sehirAD")
+                    b.Property<int?>("HastaneID")
+                        .HasColumnType("int");
+
+                    b.Property<string>("SehirAd")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("sehirID");
+                    b.HasKey("SehirID");
 
                     b.ToTable("Sehirler");
                 });
 
+            modelBuilder.Entity("DoktorKullanici", b =>
+                {
+                    b.HasOne("HastaneRandevuSistemi.Models.Doktor", null)
+                        .WithMany()
+                        .HasForeignKey("DoktorlarDoktorID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("HastaneRandevuSistemi.Models.Kullanici", null)
+                        .WithMany()
+                        .HasForeignKey("KullanicilarKullaniciID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("HastaneRandevuSistemi.Models.Doktor", b =>
                 {
-                    b.HasOne("HastaneRandevuSistemi.Models.Hastaneler", "hastaneler")
+                    b.HasOne("HastaneRandevuSistemi.Models.Hastaneler", "Hastane")
                         .WithMany("Doktorlar")
-                        .HasForeignKey("hastanelerhastaneID")
+                        .HasForeignKey("HastaneID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("HastaneRandevuSistemi.Models.Poliklinik", "poliklinikler")
-                        .WithMany("doktorlar")
-                        .HasForeignKey("polikliniklerpolID")
+                    b.HasOne("HastaneRandevuSistemi.Models.Poliklinik", "Poliklinik")
+                        .WithMany("Doktorlar")
+                        .HasForeignKey("PoliklinikPolID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("hastaneler");
+                    b.Navigation("Hastane");
 
-                    b.Navigation("poliklinikler");
+                    b.Navigation("Poliklinik");
                 });
 
             modelBuilder.Entity("HastaneRandevuSistemi.Models.Hastaneler", b =>
                 {
-                    b.HasOne("HastaneRandevuSistemi.Models.Ilceler", "Ilceler")
-                        .WithMany("hastaneler")
-                        .HasForeignKey("IlcelerilceID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.HasOne("HastaneRandevuSistemi.Models.Ilceler", null)
+                        .WithMany("Hastaneler")
+                        .HasForeignKey("IlcelerID");
 
-                    b.HasOne("HastaneRandevuSistemi.Models.Sehirler", "Sehirler")
-                        .WithMany("hastaneler")
-                        .HasForeignKey("SehirlersehirID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Ilceler");
-
-                    b.Navigation("Sehirler");
+                    b.HasOne("HastaneRandevuSistemi.Models.Sehirler", null)
+                        .WithMany("Hastaneler")
+                        .HasForeignKey("SehirlerSehirID");
                 });
 
             modelBuilder.Entity("HastaneRandevuSistemi.Models.Ilceler", b =>
                 {
-                    b.HasOne("HastaneRandevuSistemi.Models.Sehirler", "sehirler")
-                        .WithMany("ilceler")
-                        .HasForeignKey("sehirlersehirID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("sehirler");
-                });
-
-            modelBuilder.Entity("HastaneRandevuSistemi.Models.Kullanici", b =>
-                {
-                    b.HasOne("HastaneRandevuSistemi.Models.Doktor", "doktorlar")
-                        .WithMany("kullanicilar")
-                        .HasForeignKey("doktorlardoktorID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("doktorlar");
+                    b.HasOne("HastaneRandevuSistemi.Models.Sehirler", null)
+                        .WithMany("Ilceler")
+                        .HasForeignKey("SehirlerSehirID");
                 });
 
             modelBuilder.Entity("HastaneRandevuSistemi.Models.Poliklinik", b =>
                 {
-                    b.HasOne("HastaneRandevuSistemi.Models.Hastaneler", "hastaneler")
+                    b.HasOne("HastaneRandevuSistemi.Models.Hastaneler", "Hastane")
                         .WithMany("Poliklinikler")
-                        .HasForeignKey("hastanelerhastaneID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("HastaneID");
 
-                    b.Navigation("hastaneler");
+                    b.Navigation("Hastane");
                 });
 
             modelBuilder.Entity("HastaneRandevuSistemi.Models.Randevu", b =>
                 {
-                    b.HasOne("HastaneRandevuSistemi.Models.Doktor", "doktorlar")
-                        .WithMany("randevular")
-                        .HasForeignKey("doktorID")
+                    b.HasOne("HastaneRandevuSistemi.Models.Doktor", "Doktor")
+                        .WithMany("Randevular")
+                        .HasForeignKey("DoktorID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("HastaneRandevuSistemi.Models.Kullanici", "kullanici")
-                        .WithMany("randevular")
-                        .HasForeignKey("kullaniciID")
+                    b.HasOne("HastaneRandevuSistemi.Models.Kullanici", "Kullanici")
+                        .WithMany("Randevular")
+                        .HasForeignKey("KullaniciID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("HastaneRandevuSistemi.Models.RandevuTur", "tur")
                         .WithMany("randevular")
-                        .HasForeignKey("turrandevuTUR")
+                        .HasForeignKey("turRandevuTUR")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("doktorlar");
+                    b.Navigation("Doktor");
 
-                    b.Navigation("kullanici");
+                    b.Navigation("Kullanici");
 
                     b.Navigation("tur");
                 });
 
             modelBuilder.Entity("HastaneRandevuSistemi.Models.Doktor", b =>
                 {
-                    b.Navigation("kullanicilar");
-
-                    b.Navigation("randevular");
+                    b.Navigation("Randevular");
                 });
 
             modelBuilder.Entity("HastaneRandevuSistemi.Models.Hastaneler", b =>
@@ -390,17 +390,17 @@ namespace HastaneRandevuSistemi.Migrations
 
             modelBuilder.Entity("HastaneRandevuSistemi.Models.Ilceler", b =>
                 {
-                    b.Navigation("hastaneler");
+                    b.Navigation("Hastaneler");
                 });
 
             modelBuilder.Entity("HastaneRandevuSistemi.Models.Kullanici", b =>
                 {
-                    b.Navigation("randevular");
+                    b.Navigation("Randevular");
                 });
 
             modelBuilder.Entity("HastaneRandevuSistemi.Models.Poliklinik", b =>
                 {
-                    b.Navigation("doktorlar");
+                    b.Navigation("Doktorlar");
                 });
 
             modelBuilder.Entity("HastaneRandevuSistemi.Models.RandevuTur", b =>
@@ -410,9 +410,9 @@ namespace HastaneRandevuSistemi.Migrations
 
             modelBuilder.Entity("HastaneRandevuSistemi.Models.Sehirler", b =>
                 {
-                    b.Navigation("hastaneler");
+                    b.Navigation("Hastaneler");
 
-                    b.Navigation("ilceler");
+                    b.Navigation("Ilceler");
                 });
 #pragma warning restore 612, 618
         }

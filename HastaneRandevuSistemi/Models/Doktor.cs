@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace HastaneRandevuSistemi.Models
 {
@@ -6,23 +7,38 @@ namespace HastaneRandevuSistemi.Models
     {
         public Doktor()
         {
-            this.randevular = new HashSet<Randevu>();
-            this.kullanicilar = new HashSet<Kullanici>();
+            this.Randevular = new HashSet<Randevu>();
+            this.Kullanicilar = new HashSet<Kullanici>();
         }
         [Key]
-        public int doktorID { get; set; }
-        public string doktorAD { get; set; }
-        public int hastaneID { get; set; }
+        public int DoktorID { get; set; }
 
-        public int polID { get; set; }
+        public string DoktorAd { get; set; }
 
-        public Hastaneler hastaneler { get; set; }
 
-        public Poliklinik poliklinikler { get; set; }
+        [ForeignKey("HastaneId")]
+        public int HastaneID { get; set; }
+        public Hastaneler Hastane { get; set; }
 
-        public ICollection<Randevu> randevular {  get; set; }
-        public ICollection<Kullanici> kullanicilar {  get; set; }
-        
-        
+
+
+        public int PolID { get; set; }
+
+        public Poliklinik Poliklinik { get; set; }   //bire-bir
+
+        // Navigation Properties
+        //public virtual Poliklinik Poliklinik { get; set; }
+        // public ICollection<Poliklinik> Polikliniks { get; set; }
+
+        public int? RandevuID { get; set; }
+        public ICollection<Randevu> Randevular { get; set; }   //bir-cok
+
+
+
+        public int? KullanicID { get; set; }
+        public ICollection<Kullanici> Kullanicilar { get; set; }
+
+
+
     }
 }
