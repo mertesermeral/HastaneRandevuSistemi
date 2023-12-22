@@ -28,5 +28,6 @@ namespace HastaneRandevuSistemi.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+        //Controller'a giris yapildi
     }
 }
