@@ -34,7 +34,5 @@ namespace HastaneRandevuSistemi.Models
         //public int? KullaniciID { get; set; }
         public ICollection<Kullanici> Kullanicilar { get; set; }
 
-
-
     }
 }

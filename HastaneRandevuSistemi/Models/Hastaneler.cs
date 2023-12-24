@@ -13,7 +13,6 @@ namespace HastaneRandevuSistemi.Models
         }
         [Key]
         public int HastaneID { get; set; }
-
     
         public string HastaneAd { get; set; }
 

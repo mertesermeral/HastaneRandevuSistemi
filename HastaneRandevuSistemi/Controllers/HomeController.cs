@@ -54,5 +54,6 @@ namespace HastaneRandevuSistemi.Controllers
             ViewBag.Doktorlist = new SelectList(selectlist, "DoktorID", "DoktorAd");
             return PartialView("doktorgoster");
         }
+        //Controller'a giris yapildi
     }
 }

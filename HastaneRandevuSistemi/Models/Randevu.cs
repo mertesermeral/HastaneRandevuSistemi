@@ -9,13 +9,10 @@ namespace HastaneRandevuSistemi.Models
         [Key]
         public int RandevuID { get; set; }
 
-        // [Required]
         public DateTime RandevuTarih { get; set; }
 
-        //[Required]
         public string RandevuSaat { get; set; }
 
-        // Foreign Key
         public int KullaniciID { get; set; }
 
         public Kullanici Kullanici { get; set; }
