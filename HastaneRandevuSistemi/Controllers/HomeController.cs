@@ -21,7 +21,7 @@ namespace HastaneRandevuSistemi.Controllers
         }
         public ActionResult Cascading()
         {
-            ViewBag.SehirList = new SelectList(ilgetir(), "SEHIRID", "SEHIRAD");
+            ViewBag.SehirList = new SelectList(ilgetir(), "SehirlerID", "SehirAd");
             return View();
         }
         public List<Sehirler> ilgetir()
@@ -54,6 +54,5 @@ namespace HastaneRandevuSistemi.Controllers
             ViewBag.Doktorlist = new SelectList(selectlist, "DoktorID", "DoktorAd");
             return PartialView("doktorgoster");
         }
-        //Controller'a giris yapildi
     }
 }

@@ -50,28 +50,28 @@
                     }
                 })
             })
-            $("#HASTANEID").change(function () {
+            $("#HastaneID").change(function () {
                 var klinid = $(this).val();
-                var id = $('#HASTANEID').val();
+                var id = $('#HastaneID').val();
                 if (id) {
-                    $('#KLINIKID').prop("disabled", false);
+                    $('#PolID').prop("disabled", false);
                 } else {
-                    $('#KLINIKID').prop("disabled", true);
+                    $('#PolID').prop("disabled", true);
                 }
                 debugger
                 $.ajax({
                     type: "post",
-                    url: "/Home/klinikgetir?HASTANEID=" + klinid,
+                    url: "/Home/klinikgetir?HastaneID=" + klinid,
                     contentType: "html",
                     success: function (response) {
                         debugger
-                        $("#KLINIKID").empty();
-                        $("#KLINIKID").append(response);
+                        $("#PolID").empty();
+                        $("#PolID").append(response);
                     }
                 })
             })
             $(function () {
-                $('#KLINIKID').change(function () {
+                $('#PolID').change(function () {
 
                     document.getElementById("button").style.display = "block";
 
