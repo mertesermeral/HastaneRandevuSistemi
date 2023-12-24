@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HastaneRandevuSistemi.Migrations
 {
     [DbContext(typeof(HastaneContext))]
-    [Migration("20231224142445_2")]
-    partial class _2
+    [Migration("20231224203100_1")]
+    partial class _1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -175,11 +175,11 @@ namespace HastaneRandevuSistemi.Migrations
 
             modelBuilder.Entity("HastaneRandevuSistemi.Models.Poliklinik", b =>
                 {
-                    b.Property<int>("PoliklinikID")
+                    b.Property<int>("PolID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PoliklinikID"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PolID"), 1L, 1);
 
                     b.Property<int>("HastaneID")
                         .HasColumnType("int");
@@ -188,11 +188,11 @@ namespace HastaneRandevuSistemi.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("PoliklinikID");
+                    b.HasKey("PolID");
 
                     b.HasIndex("HastaneID");
 
-                    b.ToTable("Poli");
+                    b.ToTable("Poliklinik");
                 });
 
             modelBuilder.Entity("HastaneRandevuSistemi.Models.Randevu", b =>
@@ -304,11 +304,13 @@ namespace HastaneRandevuSistemi.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("HastaneRandevuSistemi.Models.Sehirler", null)
+                    b.HasOne("HastaneRandevuSistemi.Models.Sehirler", "Sehir")
                         .WithMany("Hastaneler")
                         .HasForeignKey("SehirlerID");
 
                     b.Navigation("Ilceler");
+
+                    b.Navigation("Sehir");
                 });
 
             modelBuilder.Entity("HastaneRandevuSistemi.Models.Ilceler", b =>

@@ -302,11 +302,13 @@ namespace HastaneRandevuSistemi.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("HastaneRandevuSistemi.Models.Sehirler", null)
+                    b.HasOne("HastaneRandevuSistemi.Models.Sehirler", "Sehir")
                         .WithMany("Hastaneler")
                         .HasForeignKey("SehirlerID");
 
                     b.Navigation("Ilceler");
+
+                    b.Navigation("Sehir");
                 });
 
             modelBuilder.Entity("HastaneRandevuSistemi.Models.Ilceler", b =>

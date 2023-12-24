@@ -18,7 +18,7 @@ namespace HastaneRandevuSistemi.Models
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=HastaneDB;Trusted_Connection=True;");
+            optionsBuilder.UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=HastaneDataB;Trusted_Connection=True;");
         }
 
     }

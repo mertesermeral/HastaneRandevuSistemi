@@ -20,6 +20,9 @@ namespace HastaneRandevuSistemi.Models
         
         public Ilceler Ilceler { get; set; }
 
+        public int? SehirlerID { get; set; }
+        public Sehirler Sehir { get; set; }
+
 
         // Diğer ilişkiler
         public  ICollection<Doktor> Doktorlar { get; set; }

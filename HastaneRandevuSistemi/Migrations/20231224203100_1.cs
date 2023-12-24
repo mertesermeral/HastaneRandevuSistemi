@@ -117,14 +117,14 @@ namespace HastaneRandevuSistemi.Migrations
                 name: "Poliklinik",
                 columns: table => new
                 {
-                    PoliklinikID = table.Column<int>(type: "int", nullable: false)
+                    PolID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     PolAd = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     HastaneID = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Poliklinik", x => x.PoliklinikID);
+                    table.PrimaryKey("PK_Poliklinik", x => x.PolID);
                     table.ForeignKey(
                         name: "FK_Poliklinik_Hastane_HastaneID",
                         column: x => x.HastaneID,
@@ -141,7 +141,7 @@ namespace HastaneRandevuSistemi.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     DoktorAd = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     HastaneID = table.Column<int>(type: "int", nullable: false),
-                    PoliklinikID = table.Column<int>(type: "int", nullable: true)
+                    PolID = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -153,10 +153,10 @@ namespace HastaneRandevuSistemi.Migrations
                         principalColumn: "HastaneID",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Doktor_Poliklinik_PoliklinikID",
-                        column: x => x.PoliklinikID,
+                        name: "FK_Doktor_Poliklinik_PolID",
+                        column: x => x.PolID,
                         principalTable: "Poliklinik",
-                        principalColumn: "PoliklinikID");
+                        principalColumn: "PolID");
                 });
 
             migrationBuilder.CreateTable(
@@ -224,9 +224,9 @@ namespace HastaneRandevuSistemi.Migrations
                 column: "HastaneID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Doktor_PoliklinikID",
+                name: "IX_Doktor_PolID",
                 table: "Doktor",
-                column: "PoliklinikID");
+                column: "PolID");
 
             migrationBuilder.CreateIndex(
                 name: "IX_DoktorKullanici_KullanicilarKullaniciID",
