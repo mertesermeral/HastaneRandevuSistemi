@@ -16,15 +16,14 @@ namespace HastaneRandevuSistemi.Models
         [Required]
         public string PolAd { get; set; }
 
-        // Navigation Properties
-        //  public virtual ICollection<Hastane> Hastane { get; set; }
+       
 
-        public Nullable<int> HastaneID { get; set; }      //boş bırakılabilir tanımlamıyalım bence
-        public virtual Hastaneler Hastane { get; set; }
+        public int HastaneID { get; set; }      
+        public  Hastaneler Hastane { get; set; }
 
-        // Diğer ilişkiler
-        public virtual ICollection<Doktor> Doktorlar { get; set; }
-        // Daha fazla ilişki eklenebilir
+       
+        public ICollection<Doktor> Doktorlar { get; set; }
+        
 
     }
 }

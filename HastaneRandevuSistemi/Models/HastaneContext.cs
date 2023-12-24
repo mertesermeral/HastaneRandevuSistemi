@@ -11,14 +11,14 @@ namespace HastaneRandevuSistemi.Models
         public DbSet<Ilceler> Ilce {  get; set; }
         public DbSet<Kullanici> Kullanici {  get; set; }
         public DbSet<Personel> Personel { get; set; }
-        public DbSet<RandevuTur> RandevuTur { get; set; }
+        public DbSet<Tur> RandevuTur { get; set; }
         public DbSet<Sehirler> Sehirler { get; set; }
 
 
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=Hastane;Trusted_Connection=True;");
+            optionsBuilder.UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=HastaneDB;Trusted_Connection=True;");
         }
 
     }

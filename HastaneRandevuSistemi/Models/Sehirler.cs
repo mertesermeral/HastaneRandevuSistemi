@@ -13,13 +13,13 @@ namespace HastaneRandevuSistemi.Models
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         [Key]
-        public int SehirID { get; set; }
+        public int SehirlerID { get; set; }
 
         [Required]
         public string SehirAd { get; set; }
 
         // Navigation Properties
-        public virtual ICollection<Ilceler> Ilceler { get; set; }
+        public  ICollection<Ilceler> Ilceler { get; set; }
         // public virtual ICollection<Hastane> Hastane { get; set; }
         //public Nullable<int> HastaneID { get; set; }
 

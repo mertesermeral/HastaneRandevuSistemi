@@ -16,13 +16,13 @@ namespace HastaneRandevuSistemi.Models
         public string DoktorAd { get; set; }
 
 
-        [ForeignKey("HastaneId")]
+       
         public int HastaneID { get; set; }
         public Hastaneler Hastane { get; set; }
 
+        public int? PolID { get; set; }
+        public Poliklinik Pol { get; set; }
 
-
-      
 
         // Navigation Properties
 

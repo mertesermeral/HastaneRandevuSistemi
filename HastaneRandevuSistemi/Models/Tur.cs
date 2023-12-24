@@ -2,15 +2,15 @@
 
 namespace HastaneRandevuSistemi.Models
 {
-    public class RandevuTur
+    public class Tur
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public RandevuTur()
+        public Tur()
         {
             this.randevular = new HashSet<Randevu>();
         }
         [Key]
-        public int RandevuTUR { get; set; }
+        public int TurID { get; set; }
         public string randevuAd { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

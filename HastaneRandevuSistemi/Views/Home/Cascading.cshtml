@@ -1,0 +1,110 @@
+﻿@model HastaneRandevuSistemi.Models.Class1
+@{
+    ViewBag.Title = "Cascading";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+<html>
+
+<head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.10.2/jquery.min.js" integrity="sha512-YHQNqPhxuCY2ddskIbDlZfwY6Vx3L3w9WRbyJCY81xpqLmrM6rL2+LocBgeVHwGY9SXYfQWJ+lcEWx1fKS2s8A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <script>
+        $(document).ready(function () {
+            $("#SehirID").change(function () {
+                var countryid = $(this).val();
+                var id = $('#SehirID').val();
+                if (id) {
+                    $('#IlcelerID').prop("disabled", false);
+                } else {
+                    $('#IlcelerID').prop("disabled", true);
+                }
+                debugger
+                $.ajax({
+                    type: "post",
+                    url: "/Home/ilcegetir?SehirID=" + countryid,
+                    contentType: "html",
+                    success: function (response) {
+                        debugger
+                        $("#IlcelerID").empty();
+                        $("#IlcelerID").append(response);
+                    }
+                })
+            })
+            $("#IlcelerID").change(function () {
+                var stateid = $(this).val();
+                var id = $('#IlcelerID').val();
+                if (id) {
+                    $('#HastaneID').prop("disabled", false);
+                } else {
+                    $('#HastaneID').prop("disabled", true);
+                }
+                debugger
+                $.ajax({
+                    type: "post",
+                    url: "/Home/hastanegetir?IlcelerID=" + stateid,
+                    contentType: "html",
+                    success: function (response) {
+                        debugger
+                        $("#HastaneID").empty();
+                        $("#HastaneID").append(response);
+                    }
+                })
+            })
+            $("#HASTANEID").change(function () {
+                var klinid = $(this).val();
+                var id = $('#HASTANEID').val();
+                if (id) {
+                    $('#KLINIKID').prop("disabled", false);
+                } else {
+                    $('#KLINIKID').prop("disabled", true);
+                }
+                debugger
+                $.ajax({
+                    type: "post",
+                    url: "/Home/klinikgetir?HASTANEID=" + klinid,
+                    contentType: "html",
+                    success: function (response) {
+                        debugger
+                        $("#KLINIKID").empty();
+                        $("#KLINIKID").append(response);
+                    }
+                })
+            })
+            $(function () {
+                $('#KLINIKID').change(function () {
+
+                    document.getElementById("button").style.display = "block";
+
+                });
+            });
+        })
+    </script>
+</head>
+<body>
+    @using (Html.BeginForm("Arama", "Home", FormMethod.Post))
+    {
+        <div class="card-body p-2">
+            <div class="d-flex flex-row justify-content-center">
+                <div style="margin: auto;">
+                    <div class="form-group text-center">
+                        @if (ViewBag.SehirList != null)
+                        {
+                            <label style="margin-top:20px; text-align:center;">Şehirler</label>
+                            @Html.DropDownListFor(m => m.SehirID, ViewBag.SehirList as SelectList, "---Şehir Seçiniz---", new { @class = "form-control ", style = "margin-top:20px; text-align:center;" })
+                        }
+                        <label style="margin-top: 20px; text-align: center;">İlçeler</label>
+                        @Html.DropDownListFor(m => m.IlcelerID, new SelectList(""), "---İlçe Seçiniz---", new { @class = "form-control", disabled = "disabled", style = "margin-top:20px; text-align:center;width:300px;" })
+                        <label style="margin-top: 20px; text-align: center;">Hastaneler</label>
+                        @Html.DropDownListFor(m => m.HastaneID, new SelectList(""), "---Hastane Seçiniz---", new { @class = "form-control", disabled = "disabled", style = "margin-top:20px; text-align:center;width:300px;" })
+                        <label style="margin-top: 20px; text-align: center;">Klinikler</label>
+                        @Html.DropDownListFor(m => m.PolID, new SelectList(""), "---Klinik Seçiniz---", new { @class = "form-control", disabled = "disabled", style = "margin-top:20px; text-align:center;width:300px;" })
+                        <div style="margin-top:30px;">
+                            <button id="button" type="submit" class="btn btn-warning text-light w-50" style="display: none;">Doktor Ara</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</body>
+</html>

@@ -30,7 +30,7 @@ namespace HastaneRandevuSistemi.Models
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Randevu> Randevular { get; set; }
-        // public virtual Doktor doktorlar { get; set; }
+       
 
         public ICollection<Doktor> Doktorlar { get; set; }
     }

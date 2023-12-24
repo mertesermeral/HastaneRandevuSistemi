@@ -18,16 +18,15 @@ namespace HastaneRandevuSistemi.Models
         // Foreign Key
         public int KullaniciID { get; set; }
 
+        public Kullanici Kullanici { get; set; }
 
-        // Navigation Properties
-        [ForeignKey("KullaniciID")]
-        public virtual Kullanici Kullanici { get; set; }
+       
 
-        //public Nullable<int> RandevuTUR { get; set; }
-        //public  RandevuTur RandevuTur { get; set; }
+        public int TurID { get; set; }
 
+        public Tur Tur { get; set; }
 
-        [ForeignKey("DoktorId")]
+  
         public int DoktorID { get; set; }
         public Doktor Doktor { get; set; }
     }

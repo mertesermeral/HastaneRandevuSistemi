@@ -17,32 +17,17 @@ namespace HastaneRandevuSistemi.Models
     
         public string HastaneAd { get; set; }
 
-
-
-
-
+        public int IlcelerID { get; set; }
         
-        //[ForeignKey("IlceID")]
-        //public int? IlceId { get; set; }
-        //public Ilceler Ilceler { get; set; }
-
-
-
-
-       //[ForeignKey("SehirID")]
-        //public int SehirId { get; set; }
-        
-
-
-
+        public Ilceler Ilceler { get; set; }
 
 
         // Diğer ilişkiler
-        public virtual ICollection<Doktor> Doktorlar { get; set; }
-        // Daha fazla ilişki eklenebilir
+        public  ICollection<Doktor> Doktorlar { get; set; }
+       
 
 
-        //public int? PolID { get; set; }
+        
         public ICollection<Poliklinik> Poliklinikler { get; set; }
 
     }

@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace HastaneRandevuSistemi.Migrations
 {
-    public partial class ilk : Migration
+    public partial class _1 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -45,26 +45,26 @@ namespace HastaneRandevuSistemi.Migrations
                 name: "RandevuTur",
                 columns: table => new
                 {
-                    RandevuTUR = table.Column<int>(type: "int", nullable: false)
+                    TurID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     randevuAd = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_RandevuTur", x => x.RandevuTUR);
+                    table.PrimaryKey("PK_RandevuTur", x => x.TurID);
                 });
 
             migrationBuilder.CreateTable(
                 name: "Sehirler",
                 columns: table => new
                 {
-                    SehirID = table.Column<int>(type: "int", nullable: false)
+                    SehirlerID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     SehirAd = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Sehirler", x => x.SehirID);
+                    table.PrimaryKey("PK_Sehirler", x => x.SehirlerID);
                 });
 
             migrationBuilder.CreateTable(
@@ -74,16 +74,17 @@ namespace HastaneRandevuSistemi.Migrations
                     IlcelerID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     IlceAd = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    SehirlerSehirID = table.Column<int>(type: "int", nullable: true)
+                    SehirlerID = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Ilce", x => x.IlcelerID);
                     table.ForeignKey(
-                        name: "FK_Ilce_Sehirler_SehirlerSehirID",
-                        column: x => x.SehirlerSehirID,
+                        name: "FK_Ilce_Sehirler_SehirlerID",
+                        column: x => x.SehirlerID,
                         principalTable: "Sehirler",
-                        principalColumn: "SehirID");
+                        principalColumn: "SehirlerID",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -93,8 +94,8 @@ namespace HastaneRandevuSistemi.Migrations
                     HastaneID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     HastaneAd = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    IlcelerID = table.Column<int>(type: "int", nullable: true),
-                    SehirlerSehirID = table.Column<int>(type: "int", nullable: true)
+                    IlcelerID = table.Column<int>(type: "int", nullable: false),
+                    SehirlerID = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -103,31 +104,33 @@ namespace HastaneRandevuSistemi.Migrations
                         name: "FK_Hastane_Ilce_IlcelerID",
                         column: x => x.IlcelerID,
                         principalTable: "Ilce",
-                        principalColumn: "IlcelerID");
+                        principalColumn: "IlcelerID",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Hastane_Sehirler_SehirlerSehirID",
-                        column: x => x.SehirlerSehirID,
+                        name: "FK_Hastane_Sehirler_SehirlerID",
+                        column: x => x.SehirlerID,
                         principalTable: "Sehirler",
-                        principalColumn: "SehirID");
+                        principalColumn: "SehirlerID");
                 });
 
             migrationBuilder.CreateTable(
                 name: "Poliklinik",
                 columns: table => new
                 {
-                    PolID = table.Column<int>(type: "int", nullable: false)
+                    PoliklinikID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     PolAd = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    HastaneID = table.Column<int>(type: "int", nullable: true)
+                    HastaneID = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Poliklinik", x => x.PolID);
+                    table.PrimaryKey("PK_Poliklinik", x => x.PoliklinikID);
                     table.ForeignKey(
                         name: "FK_Poliklinik_Hastane_HastaneID",
                         column: x => x.HastaneID,
                         principalTable: "Hastane",
-                        principalColumn: "HastaneID");
+                        principalColumn: "HastaneID",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -138,7 +141,7 @@ namespace HastaneRandevuSistemi.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     DoktorAd = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     HastaneID = table.Column<int>(type: "int", nullable: false),
-                    PoliklinikPolID = table.Column<int>(type: "int", nullable: true)
+                    PoliklinikID = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -150,10 +153,10 @@ namespace HastaneRandevuSistemi.Migrations
                         principalColumn: "HastaneID",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Doktor_Poliklinik_PoliklinikPolID",
-                        column: x => x.PoliklinikPolID,
+                        name: "FK_Doktor_Poliklinik_PoliklinikID",
+                        column: x => x.PoliklinikID,
                         principalTable: "Poliklinik",
-                        principalColumn: "PolID");
+                        principalColumn: "PoliklinikID");
                 });
 
             migrationBuilder.CreateTable(
@@ -189,8 +192,8 @@ namespace HastaneRandevuSistemi.Migrations
                     RandevuTarih = table.Column<DateTime>(type: "datetime2", nullable: false),
                     RandevuSaat = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     KullaniciID = table.Column<int>(type: "int", nullable: false),
-                    DoktorID = table.Column<int>(type: "int", nullable: false),
-                    RandevuTUR = table.Column<int>(type: "int", nullable: true)
+                    TurID = table.Column<int>(type: "int", nullable: false),
+                    DoktorID = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -208,10 +211,11 @@ namespace HastaneRandevuSistemi.Migrations
                         principalColumn: "KullaniciID",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Randevu_RandevuTur_RandevuTUR",
-                        column: x => x.RandevuTUR,
+                        name: "FK_Randevu_RandevuTur_TurID",
+                        column: x => x.TurID,
                         principalTable: "RandevuTur",
-                        principalColumn: "RandevuTUR");
+                        principalColumn: "TurID",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
@@ -220,9 +224,9 @@ namespace HastaneRandevuSistemi.Migrations
                 column: "HastaneID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Doktor_PoliklinikPolID",
+                name: "IX_Doktor_PoliklinikID",
                 table: "Doktor",
-                column: "PoliklinikPolID");
+                column: "PoliklinikID");
 
             migrationBuilder.CreateIndex(
                 name: "IX_DoktorKullanici_KullanicilarKullaniciID",
@@ -235,14 +239,14 @@ namespace HastaneRandevuSistemi.Migrations
                 column: "IlcelerID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Hastane_SehirlerSehirID",
+                name: "IX_Hastane_SehirlerID",
                 table: "Hastane",
-                column: "SehirlerSehirID");
+                column: "SehirlerID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Ilce_SehirlerSehirID",
+                name: "IX_Ilce_SehirlerID",
                 table: "Ilce",
-                column: "SehirlerSehirID");
+                column: "SehirlerID");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Poliklinik_HastaneID",
@@ -260,9 +264,9 @@ namespace HastaneRandevuSistemi.Migrations
                 column: "KullaniciID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Randevu_RandevuTUR",
+                name: "IX_Randevu_TurID",
                 table: "Randevu",
-                column: "RandevuTUR");
+                column: "TurID");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
