@@ -1,8 +1,9 @@
 ﻿using HastaneRandevuSistemi.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Newtonsoft.Json;
 using System.Diagnostics;
-// deneme 2
+
 namespace HastaneRandevuSistemi.Controllers
 {
     public class HomeController : Controller
@@ -53,6 +54,88 @@ namespace HastaneRandevuSistemi.Controllers
             List<Doktor> selectlist = db.Doktor.Where(x => x.PolID == PolID).ToList();
             ViewBag.Doktorlist = new SelectList(selectlist, "DoktorID", "DoktorAd");
             return PartialView("doktorgoster");
+        }
+        public ActionResult AsiRandevu()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult AsiRandevuAl(string data)
+        {
+            Randevu rande = new Randevu();
+            var dataObject = JsonConvert.DeserializeObject<Randevu>(data);
+            var kullaniciadi = User.Identity.Name;
+            var kullanici = db.Kullanici.FirstOrDefault(x => x.KullaniciTC == kullaniciadi);
+            rande.KullaniciID = kullanici.KullaniciID;
+            rande.DoktorID = dataObject.DoktorID;
+            rande.RandevuTarih = dataObject.RandevuTarih;
+            rande.RandevuSaat = dataObject.RandevuSaat;
+            rande.TurID = dataObject.TurID;
+
+            db.Randevu.Add(rande);
+            db.SaveChanges();
+            return Json(true);
+        }
+        public ActionResult AileHekimi()
+        {
+
+            return View();
+        }
+        [HttpPost]
+        public ActionResult AilehekimiRandevuAl(string data)
+        {
+            Randevu rande = new Randevu();
+            var dataObject = JsonConvert.DeserializeObject<Randevu>(data);
+            var kullaniciadi = User.Identity.Name;
+            var kullanici = db.Kullanici.FirstOrDefault(x => x.KullaniciTC == kullaniciadi);
+            rande.KullaniciID = kullanici.KullaniciID;
+            rande.DoktorID = dataObject.DoktorID;
+            rande.RandevuTarih = dataObject.RandevuTarih;
+            rande.RandevuSaat = dataObject.RandevuSaat;
+            rande.TurID = dataObject.TurID;
+            db.Randevu.Add(rande);
+            db.SaveChanges();
+            return Json(true);
+        }
+        public ActionResult Arama()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult Arama(Class1 id)
+        {
+            var model = db.Doktor.Where(x => x.PolID == id.PolID).ToList();
+            var firma = db.Doktor.Where(x => x.PolID == id.PolID).Select(x => x.DoktorID).FirstOrDefault();
+            ViewBag.viewfirma = firma;
+            return View("Arama", model);
+        }
+        public ActionResult Doktor()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult DoktorRandevuAl(string data, Doktor p1)
+        {
+            var u = db.Doktor.Find(p1.DoktorID);
+            Randevu rande = new Randevu();
+            var dataObject = JsonConvert.DeserializeObject<Randevu>(data);
+            var kullaniciadi = User.Identity.Name;
+            var kullanici = db.Kullanici.FirstOrDefault(x => x.KullaniciTC == kullaniciadi);
+            rande.KullaniciID = kullanici.KullaniciID;
+            rande.DoktorID = dataObject.DoktorID;
+            rande.RandevuTarih = dataObject.RandevuTarih;
+            rande.RandevuSaat = dataObject.RandevuSaat;
+            rande.TurID = dataObject.TurID;
+            db.Randevu.Add(rande);
+            db.SaveChanges();
+            return Json(true);
+        }
+        public ActionResult Goster()
+        {
+            var kullaniciadi = User.Identity.Name;
+            var kullanici = db.Kullanici.FirstOrDefault(x => x.KullaniciTC == kullaniciadi);
+            var model = db.Randevu.Where(x => x.KullaniciID == kullanici.KullaniciID).ToList();
+            return View(model);
         }
     }
 }
