@@ -2,7 +2,7 @@
 {
     public class Class1
     {
-        public int SehirID { get; set; }
+        public int SehirlerID { get; set; }
         public int IlcelerID { get; set; }
         public int HastaneID { get; set; }
         public int PolID { get; set; }

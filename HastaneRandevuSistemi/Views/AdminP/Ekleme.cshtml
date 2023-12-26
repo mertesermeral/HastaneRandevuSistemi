@@ -1,14 +1,14 @@
 ﻿@model HastaneRandevuSistemi.Models.Class1
 @{
     ViewBag.Title = "Ekleme";
-    Layout = "~/Views/Shared/AdminLayout.cshtml";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.10.2/jquery.min.js" integrity="sha512-YHQNqPhxuCY2ddskIbDlZfwY6Vx3L3w9WRbyJCY81xpqLmrM6rL2+LocBgeVHwGY9SXYfQWJ+lcEWx1fKS2s8A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script>
     $(document).ready(function () {
-        $("#SehirID").change(function () {
+        $("#SehirlerID").change(function () {
             var countryid = $(this).val();
-            var id = $('#SehirID').val();
+            var id = $('#SehirlerID').val();
             if (id) {
                 $('#IlcelerID').prop("disabled", false);
             } else {
@@ -17,7 +17,7 @@
             debugger
             $.ajax({
                 type: "post",
-                url: "/Home/ilcegetir?SehirID=" + countryid,
+                url: "/Home/ilcegetir?SehirlerID=" + countryid,
                 contentType: "html",
                 success: function (response) {
                     debugger
@@ -38,7 +38,7 @@
                         @if (ViewBag.SehirList != null)
                         {
                     <label style="margin-top:20px; text-align:center;">Şehirler</label>
-                            @Html.DropDownListFor(m => m.SehirID, ViewBag.SehirList as SelectList, "---Şehir Seçiniz---", new { @class = "form-control ", style = "margin-top:20px; text-align:center;" })
+                            @Html.DropDownListFor(m => m.SehirlerID, ViewBag.SehirList as SelectList, "---Şehir Seçiniz---", new { @class = "form-control ", style = "margin-top:20px; text-align:center;" })
                         }
                 <label style="margin-top: 20px; text-align: center;">İlçeler</label>
                         @Html.DropDownListFor(m => m.IlcelerID, new SelectList(""), "---İlçe Seçiniz---", new { @class = "form-control", disabled="disabled",style = "margin-top:20px; text-align:center;width:300px;" })

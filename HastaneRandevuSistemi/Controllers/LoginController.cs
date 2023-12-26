@@ -1,6 +1,7 @@
 ﻿using HastaneRandevuSistemi.Models;
 using Microsoft.AspNetCore.Mvc;
 
+
 namespace HastaneRandevuSistemi.Controllers
 {
     public class LoginController : Controller

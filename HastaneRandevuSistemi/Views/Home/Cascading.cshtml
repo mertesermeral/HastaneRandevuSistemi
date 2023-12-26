@@ -90,7 +90,7 @@
                         @if (ViewBag.SehirList != null)
                         {
                             <label style="margin-top:20px; text-align:center;">Şehirler</label>
-                            @Html.DropDownListFor(m => m.SehirID, ViewBag.SehirList as SelectList, "---Şehir Seçiniz---", new { @class = "form-control ", style = "margin-top:20px; text-align:center;" })
+                            @Html.DropDownListFor(m => m.SehirlerID, ViewBag.SehirList as SelectList, "---Şehir Seçiniz---", new { @class = "form-control ", style = "margin-top:20px; text-align:center;" })
                         }
                         <label style="margin-top: 20px; text-align: center;">İlçeler</label>
                         @Html.DropDownListFor(m => m.IlcelerID, new SelectList(""), "---İlçe Seçiniz---", new { @class = "form-control", disabled = "disabled", style = "margin-top:20px; text-align:center;width:300px;" })

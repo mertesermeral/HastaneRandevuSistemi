@@ -1,0 +1,53 @@
+﻿@using HastaneRandevuSistemi
+@model List<HastaneRandevuSistemi.Models.Randevu>
+@{
+    ViewBag.Title = "Goster";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    .doz {
+        display: flex;
+    }
+
+    .asd {
+        margin-top: 50px;
+        text-align: center;
+    }
+
+    .img {
+        width: 400px;
+        object-fit: contain;
+    }
+</style>
+<body>
+    <h2 style="text-align:center;margin-top:20px;">Randevularım</h2>
+    <div class="doz">
+        <table class="table table-bordered asd">
+            <tr>
+                <th>Randevu Türü</th>
+                <th>Hastane Adı</th>
+                <th>Klinik Adı</th>
+                <th>Doktor Adı</th>
+                <th>Randevu Tarihi</th>
+            </tr>
+
+            <tbody>
+                @foreach (var urn in Model)
+                {
+                    <tr>
+                        <td style="vertical-align: middle;">@urn.Tur.randevuAd</td>
+                        <td style="vertical-align: middle;">@urn.Doktor.Pol.Hastane.HastaneAd</td>
+                        <td style="vertical-align: middle;">@urn.Doktor.Pol.PolAd</td>
+                        <td style="vertical-align: middle;">@urn.Doktor.DoktorAd</td>
+                        <td style="vertical-align: middle;color:red;">@urn.RandevuTarih @urn.RandevuSaat</td>
+                    </tr>
+
+                }
+
+            </tbody>
+        </table>
+
+    </div>
+</body>
+
