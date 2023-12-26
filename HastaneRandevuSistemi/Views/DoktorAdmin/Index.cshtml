@@ -1,13 +1,6 @@
 ﻿@using HastaneRandevuSistemi.Models
-
-
-@using X.PagedList
-@using X.PagedList.Mvc
-
-@using X.PagedList.Mvc.Core
-@using Microsoft.AspNetCore.Html;
-
-
+@using PagedList
+@using PagedList.Mvc
 @model PagedList.IPagedList<Doktor>
 @{
     @using X.PagedList.Mvc.Core
@@ -89,10 +82,9 @@
 
     </div>
 </body>
-@*
-@Html.PagedListPager((IPagedList)Model, sayfa => Url.Action("Index", new { sayfa }), new PagedListRenderOptions
+
+@* */@Html.PagedListPager((IPagedList)Model, sayfa => Url.Action("Index", new { sayfa }), new PagedListRenderOptions
 {
     LiElementClasses = new List<string>
      {"page-link"}
-})
-*@
+}) *@
