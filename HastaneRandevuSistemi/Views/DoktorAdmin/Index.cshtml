@@ -3,6 +3,8 @@
 @using PagedList.Mvc
 @model PagedList.IPagedList<Doktor>
 @{
+    @using X.PagedList.Mvc.Core
+
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
@@ -43,14 +45,14 @@
 
     @using (Html.BeginForm())
     {
-        <div class="form-group">
-            <div class="w-25 ara">
+            <div class="form-group">
+                <div class="w-25 ara">
                 @Html.TextBox("ara", null, new { @class = "form-control", @placeholder = "Aranacak doktor adını giriniz" })
-            </div>
-            <div class="but">
+                </div>
+                <div class="but">
                 @Html.ActionLink("Ara", "Index", null, new { @class = "btn btn-info ", onclick = "$(this).parents('form').attr('action', $(this).attr('href'));$(this).parents('form').submit();return false;" })
+                </div>
             </div>
-        </div>
     }
     <div class="doz">
         <table class="table table-hover asd">
@@ -65,15 +67,15 @@
             <tbody>
                 @foreach (var urn in Model)
                 {
-                    <tr>
-                        <th>@urn.DoktorID</th>
-                        <td>@urn.Hastane.HastaneAd</td>
-                        <td>@urn.Pol.PolAd</td>
-                        <td>@urn.DoktorAd</td>
-                        <td>@Html.ActionLink("Sil", "Sil", new { id = urn.DoktorID }, new { @class = "btn btn-danger", onclick = "return confirm('Gerçekten Silmek İstiyor musunuz?')" }) </td>
-                        <td><a href="/DoktorAdmin/Güncelle/@urn.DoktorID" class="btn btn-primary">Güncelle</a></td>
+                        <tr>
+                            <th>@urn.DoktorID</th>
+                            <td>@urn.Hastane.HastaneAd</td>
+                            <td>@urn.Pol.PolAd</td>
+                            <td>@urn.DoktorAd</td>
+                            <td>@Html.ActionLink("Sil", "Sil", new { id = urn.DoktorID }, new { @class = "btn btn-danger", onclick = "return confirm('Gerçekten Silmek İstiyor musunuz?')" }) </td>
+                            <td><a href="/DoktorAdmin/Güncelle/@urn.DoktorID" class="btn btn-primary">Güncelle</a></td>
 
-                    </tr>
+                        </tr>
                 }
             </tbody>
         </table>
