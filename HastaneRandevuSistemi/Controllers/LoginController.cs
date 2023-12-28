@@ -6,7 +6,7 @@ namespace HastaneRandevuSistemi.Controllers
 {
     public class LoginController : Controller
     {
-        // GET: Login
+        // GET: Login düzenlendi
         HastaneContext db = new HastaneContext();
         public ActionResult Register()
         {
