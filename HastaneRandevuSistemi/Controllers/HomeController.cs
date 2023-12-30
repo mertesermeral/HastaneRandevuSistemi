@@ -1,6 +1,7 @@
 ﻿using HastaneRandevuSistemi.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 using System.Diagnostics;
 
@@ -17,7 +18,8 @@ namespace HastaneRandevuSistemi.Controllers
         HastaneContext db= new HastaneContext();
         public IActionResult Index()
         {
-            var degerler = db.Hastane.ToList();
+            var degerler = db.Hastane.Include(h=> h.Sehir).ToList();
+            var degerler2 = db.Hastane.Include(h=> h.Ilceler).ToList();
             return View(degerler);
         }
         public ActionResult Cascading()

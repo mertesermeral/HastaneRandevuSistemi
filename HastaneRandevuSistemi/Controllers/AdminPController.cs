@@ -1,6 +1,7 @@
 ﻿using HastaneRandevuSistemi.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 
 namespace HastaneRandevuSistemi.Controllers
 {
@@ -9,7 +10,8 @@ namespace HastaneRandevuSistemi.Controllers
         HastaneContext db = new HastaneContext();
         public IActionResult Index()
         {
-            var degerler = db.Hastane.ToList();
+            var degerler = db.Hastane.Include(h => h.Sehir).ToList();
+            var degerler2 = db.Hastane.Include(h => h.Ilceler).ToList();
             return View(degerler);
             
         }
@@ -91,9 +93,9 @@ namespace HastaneRandevuSistemi.Controllers
 
             return sehirler;
         }
-        public ActionResult ilcegetir(int SEHIRID)
+        public ActionResult ilcegetir(int SehirlerID)
         {
-            List<Ilceler> selectlist = db.Ilce.Where(x => x.SehirlerID == SEHIRID).ToList();
+            List<Ilceler> selectlist = db.Ilce.Where(x => x.SehirlerID == SehirlerID).ToList();
             ViewBag.Ilcelist = new SelectList(selectlist, "IlcelerID", "IlceAd");
             return PartialView("ilcegoster");
         }
