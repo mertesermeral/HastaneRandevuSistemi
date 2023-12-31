@@ -5,6 +5,7 @@ using System.Web;
 using HastaneRandevuSistemi.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 namespace HastaneRandevuSistemi.Controllers
 {
     public class KlinikAdminController : Controller
@@ -14,7 +15,7 @@ namespace HastaneRandevuSistemi.Controllers
         HastaneContext db = new HastaneContext();
         public ActionResult Index()
         {
-            var degerler = db.Poliklinik.ToList();
+            var degerler = db.Poliklinik.Include(h => h.Hastane).ToList();
             return View(degerler);
         }
         [HttpGet]
@@ -32,7 +33,7 @@ namespace HastaneRandevuSistemi.Controllers
         [HttpPost]
         public ActionResult Ekleme(Poliklinik p1)
         {
-            var ktg = db.Hastane.Where(m => m.HastaneID == p1.Hastane.HastaneID).FirstOrDefault();
+            var ktg = db.Hastane.Where(m => m.HastaneID == p1.HastaneID).FirstOrDefault();
             p1.Hastane = ktg;
             db.Poliklinik.Add(p1);
             db.SaveChanges();
@@ -55,7 +56,7 @@ namespace HastaneRandevuSistemi.Controllers
                                             Value = x.HastaneID.ToString(),
                                         }).ToList();
             ViewBag.klk = ils;
-            return View("Güncelle", klnk);
+            return View("Güncelle",klnk);
         }
         public ActionResult Guncel(Poliklinik p1)
         {

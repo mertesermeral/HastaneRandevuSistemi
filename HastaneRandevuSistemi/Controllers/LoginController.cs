@@ -11,6 +11,7 @@ namespace HastaneRandevuSistemi.Controllers
     {
         // GET: Login düzenlendi
         HastaneContext db = new HastaneContext();
+        [HttpGet]
         public ActionResult Register()
         {
             return View();
@@ -19,8 +20,7 @@ namespace HastaneRandevuSistemi.Controllers
         //[ValidateAntiForgeryToken]
         public ActionResult Register(Kullanici U)
         {
-            if (ModelState.IsValid)
-            {
+            
                 using (HastaneContext dc = new HastaneContext())
                 {
                     if (dc.Kullanici.Any(x => x.KullaniciTC == U.KullaniciTC))
@@ -35,7 +35,7 @@ namespace HastaneRandevuSistemi.Controllers
                     U = null;
                     ViewBag.Message = "Kaydınız başarıyla tamamlanmıştır";
                 }
-            }
+            
             return View(U);
         }
         [HttpGet]
