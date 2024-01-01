@@ -21,7 +21,6 @@ namespace HastaneRandevuSistemi.Models
         // Navigation Properties
         public  ICollection<Ilceler> Ilceler { get; set; }
         
-
         public virtual ICollection<Hastaneler> Hastaneler { get; set; }
     }
 }
