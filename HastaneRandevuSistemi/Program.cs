@@ -8,7 +8,7 @@ using System.Reflection;
 var builder = WebApplication.CreateBuilder(args);
 
 
-#region Localizer
+#region Localizer                                                                        /* Ingilizce-Turkce Dil Destegi icin */
 builder.Services.AddSingleton<LanguageService>();
 builder.Services.AddLocalization(options => options.ResourcesPath = "Resources");
 builder.Services.AddMvc().AddViewLocalization().AddDataAnnotationsLocalization(options =>
@@ -51,13 +51,13 @@ if (!app.Environment.IsDevelopment())
     // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
-app.UseAuthentication();
+app.UseAuthentication(); 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseSession();
 
 app.UseRequestLocalization(app.Services.GetRequiredService<IOptions<RequestLocalizationOptions>>().Value);
-//app.UseRequestLocalization(app.Services.GetRequiredService<IOptions<RequestLocalizationOptions>>().Value);
+
 app.UseRouting();
 
 app.UseAuthorization();

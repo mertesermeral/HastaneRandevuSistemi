@@ -22,29 +22,15 @@ namespace HastaneRandevuSistemi.Controllers
         HastaneContext db= new HastaneContext();
         public IActionResult Index()
         {
-            ViewBag.Hastanelerimiz = _localization.Getkey("Hastanelerimiz").Value;
+            ViewBag.Hastanelerimiz = _localization.Getkey("Hastanelerimiz").Value;           //Dil Destegi 
             var currentCulture = Thread.CurrentThread.CurrentCulture.Name;
 
             var degerler = db.Hastane.Include(h=> h.Sehir).ToList();
             var degerler2 = db.Hastane.Include(h=> h.Ilceler).ToList();
 
-           
-           // ViewBag.Welcome2 = _localization.Getkey("Hastane Randevusu Al").Value;
-            //ViewBag.Welcome3 = _localization.Getkey("Aile Hekimi Randevusu Al").Value;
-           // ViewBag.Welcome4 = _localization.Getkey("Hastanelerimiz").Value;
-           
-
             return View(degerler);
         }
-
-        //public IActionResult Index()
-        //{
-        //    ViewBag.Welcome = _localization.Getkey("Welcome").Value;
-        //    var currentCulture = Thread.CurrentThread.CurrentCulture.Name;
-        //    return View();
-        //}
-
-        public IActionResult ChangeLanguage(string culture)
+        public IActionResult ChangeLanguage(string culture)                          //Dil Destegi
         {
             Response.Cookies.Append(CookieRequestCultureProvider.DefaultCookieName,
                 CookieRequestCultureProvider.MakeCookieValue(new RequestCulture(culture)), new CookieOptions()
