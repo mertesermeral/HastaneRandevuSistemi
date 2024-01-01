@@ -20,6 +20,7 @@ namespace HastaneRandevuSistemi.Controllers
         {
             var degerler = db.Hastane.Include(h=> h.Sehir).ToList();
             var degerler2 = db.Hastane.Include(h=> h.Ilceler).ToList();
+            
             return View(degerler);
         }
         public ActionResult Cascading()
@@ -48,7 +49,7 @@ namespace HastaneRandevuSistemi.Controllers
         public ActionResult klinikgetir(int HastaneID)
         {
             List<Poliklinik> selectlist = db.Poliklinik.Where(x => x.HastaneID == HastaneID).ToList();
-            ViewBag.Kliniklist = new SelectList(selectlist, "PoliklinikID", "PolAd");
+            ViewBag.Kliniklist = new SelectList(selectlist, "PolID", "PolAd");
             return PartialView("klinikgoster");
         }
         public ActionResult doktorgetir(int PolID)
@@ -101,6 +102,7 @@ namespace HastaneRandevuSistemi.Controllers
         }
         public ActionResult Arama()
         {
+            var degerler3 = db.Doktor.Include(h => h.Hastane).ToList();
             return View();
         }
         [HttpPost]
@@ -108,6 +110,8 @@ namespace HastaneRandevuSistemi.Controllers
         {
             var model = db.Doktor.Where(x => x.PolID == id.PolID).ToList();
             var firma = db.Doktor.Where(x => x.PolID == id.PolID).Select(x => x.DoktorID).FirstOrDefault();
+            var degerler = db.Doktor.Include(h => h.Hastane).ToList();
+            var degerler2 = db.Doktor.Include(h => h.Pol).ToList();
             ViewBag.viewfirma = firma;
             return View("Arama", model);
         }

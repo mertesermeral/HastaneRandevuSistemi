@@ -1,6 +1,7 @@
 ﻿using HastaneRandevuSistemi.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 using PagedList;
 namespace HastaneRandevuSistemi.Controllers
 {
@@ -10,6 +11,9 @@ namespace HastaneRandevuSistemi.Controllers
         public ActionResult Index(string ara, int sayfa = 1)
         {
             List<Doktor> degerler = db.Doktor.ToList();
+            var degerler2 = db.Doktor.Include(h => h.Hastane).ToList();
+            var degerler3 = db.Doktor.Include(h => h.Pol).ToList();
+
             return View(db.Doktor.Where(s => s.DoktorAd.ToLower().Contains(ara) || ara == null).ToList().ToPagedList(sayfa, 15));
         }
         Class1 cs = new Class1();
@@ -80,7 +84,7 @@ namespace HastaneRandevuSistemi.Controllers
         }
         public ActionResult Guncel(Doktor p1)
         {
-            var u = db.Doktor.Find(p1.DoktorID);
+            var u = db.Doktor.Find(p1.DoktorID);         
             var fr = db.Hastane.Where(m => m.HastaneID == p1.Hastane.HastaneID).FirstOrDefault();
             u.HastaneID = fr.HastaneID;
             var mrk = db.Poliklinik.Where(m => m.PolID == p1.Pol.PolID).FirstOrDefault();

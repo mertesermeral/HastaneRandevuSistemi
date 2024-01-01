@@ -9,7 +9,7 @@ namespace HastaneRandevuSistemi.Models
         [Key]
         public int RandevuID { get; set; }
 
-        public DateTime RandevuTarih { get; set; }
+        public string RandevuTarih { get; set; }
 
         public string RandevuSaat { get; set; }
 

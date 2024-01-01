@@ -8,7 +8,7 @@
     {
             <div class="form-group">
                 <label style="margin-top:10px;"> Hastane ID </label>
-            @Html.TextBoxFor(m => m.HastaneID, new { @class = "form-control w-50", style = "margin-top:5px;", @readonly = true })
+            @Html.TextBoxFor(m => m.HastaneID, new { @class = "form-control w-50", style = "margin-top:5px;" })
                 <label style="margin-top:10px;">İl</label>
             @Html.DropDownListFor(m => m.Sehir.SehirlerID, (List<SelectListItem>)ViewBag.shr, new { @class = "form-control w-50", style = "margin-top:5px;" })
                 <label style="margin-top:10px;">İlçe</label>
