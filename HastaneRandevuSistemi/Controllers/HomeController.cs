@@ -144,7 +144,7 @@ namespace HastaneRandevuSistemi.Controllers
             Randevu rande = new Randevu();
             var dataObject = JsonConvert.DeserializeObject<Randevu>(data);
             var kullaniciadi = User.Identity.Name;
-            var kullanici = db.Kullanici.FirstOrDefault(x => x.KullaniciAd == kullaniciadi);
+            var kullanici = db.Kullanici.FirstOrDefault(x => x.KullaniciTC == kullaniciadi);
             rande.KullaniciID = kullanici.KullaniciID;
             rande.DoktorID = dataObject.DoktorID;
             rande.RandevuTarih = dataObject.RandevuTarih;
