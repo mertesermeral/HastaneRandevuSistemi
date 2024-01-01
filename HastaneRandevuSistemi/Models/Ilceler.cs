@@ -19,9 +19,6 @@ namespace HastaneRandevuSistemi.Models
         public Sehirler Sehirler { get; set; }
 
       
-
-
-
         public ICollection<Hastaneler> Hastaneler { get; set; }
 
     }

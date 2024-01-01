@@ -159,6 +159,10 @@ namespace HastaneRandevuSistemi.Controllers
             var kullaniciadi = User.Identity.Name;
             var kullanici = db.Kullanici.FirstOrDefault(x => x.KullaniciTC == kullaniciadi);
             var model = db.Randevu.Where(x => x.KullaniciID == kullanici.KullaniciID).ToList();
+            var degerler = db.Randevu.Include(h => h.Tur).ToList();
+            var degerler2 = db.Randevu.Include(h => h.Doktor).ToList();
+            var degerler3 = db.Randevu.Include(h => h.Doktor.Pol).ToList();
+            var degerler4 = db.Randevu.Include(h => h.Doktor.Pol.Hastane).ToList();
             return View(model);
         }
     }

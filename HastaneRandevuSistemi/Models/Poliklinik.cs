@@ -15,13 +15,10 @@ namespace HastaneRandevuSistemi.Models
 
         [Required]
         public string PolAd { get; set; }
-
-       
-
+     
         public int HastaneID { get; set; }      
         public  Hastaneler Hastane { get; set; }
-
-       
+     
         public ICollection<Doktor> Doktorlar { get; set; }
         
 

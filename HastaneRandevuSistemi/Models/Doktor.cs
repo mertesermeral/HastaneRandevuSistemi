@@ -14,24 +14,14 @@ namespace HastaneRandevuSistemi.Models
         public int DoktorID { get; set; }
 
         public string DoktorAd { get; set; }
-
-
        
         public int HastaneID { get; set; }
         public Hastaneler Hastane { get; set; }
 
         public int? PolID { get; set; }
         public Poliklinik Pol { get; set; }
-
-
-        // Navigation Properties
-
-        //public int? RandevuID { get; set; }
-        public ICollection<Randevu> Randevular { get; set; }   //bir-cok
-
-
-
-        //public int? KullaniciID { get; set; }
+ 
+        public ICollection<Randevu> Randevular { get; set; }   
         public ICollection<Kullanici> Kullanicilar { get; set; }
 
     }
