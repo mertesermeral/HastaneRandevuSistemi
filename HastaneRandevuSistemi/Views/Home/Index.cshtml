@@ -57,14 +57,50 @@
     </style>
 </head>
 <body>
+
+
+                         <div class="dropdown">
+                                <button type="button" 
+                                    class="btn btn-primary dropdown-toggle" 
+                                    data-bs-toggle="dropdown"> Localization 
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <a 
+                                            asp-controller="Home" 
+                                            asp-action="ChangeLanguage" 
+                                            asp-route-culture="en-US" 
+                                            class="dropdown-item">
+                                            <i class="flag-icon flag-icon-gb"></i> English
+                                        </a>
+                                    </li>
+                                    <li>
+
+                                        <a 
+                                            asp-controller="Home" 
+                                            asp-action="ChangeLanguage" 
+                                            asp-route-culture="tr-TR" 
+                                            class="dropdown-item">
+                                            <i class="flag-icon flag-icon-gb"></i> Türkçe
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+
+
+
+
     <div id="outer">
-        <div class="inner"><a href="/Home/AsiRandevu" class="btn btn-secondary btn-lg"><i class="fa fa-syringe a" style="font-size:48px;"></i><span> Aşı Randevusu Al</span></a></div>
-        <div class="inner inn"><a href="/Home/Cascading" class="btn btn-danger btn-lg"><i class="fa fa-hospital a" style="font-size:48px;"></i><span> Hastane Randevusu Al</span></a></div>
-        <div class="inner inn"><a href="/Home/AileHekimi" class="btn btn-info btn-lg text-light"><i class="fa fa-user-md a" style="font-size:48px;"></i><span> Aile Hekimi Randevusu Al</span></a></div>
+        <div class="inner"><a href="/Home/AsiRandevu" class="btn btn-secondary btn-lg"><i class="fa fa-syringe a" style="font-size:48px;"></i><span>@_localization.Getkey("Aşı Randevusu Al").Value </span></a></div>
+        <div class="inner inn"><a href="/Home/Cascading" class="btn btn-danger btn-lg"><i class="fa fa-hospital a" style="font-size:48px;"></i><span>@_localization.Getkey("Hastane Randevusu Al").Value </span></a></div>
+        <div class="inner inn"><a href="/Home/AileHekimi" class="btn btn-info btn-lg text-light"><i class="fa fa-user-md a" style="font-size:48px;"></i><span>@_localization.Getkey("Aile Hekimi Randevusu Al").Value </span></a></div>
     </div>
+
+
+
     <ul class="nav nav-tabs tabss">
         <li class="nav-item">
-            <a class="nav-link active " aria-current="page">Hastanelerimiz</a>
+            <a class="nav-link active " aria-current="page">@_localization.Getkey("Hastanelerimiz").Value</a>
         </li>
     </ul>
     <div>

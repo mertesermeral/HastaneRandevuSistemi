@@ -1,4 +1,6 @@
 ﻿using HastaneRandevuSistemi.Models;
+using HastaneRandevuSistemi.Services;
+using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -10,19 +12,49 @@ namespace HastaneRandevuSistemi.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private LanguageService _localization;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, LanguageService localization)
         {
             _logger = logger;
+            _localization = localization;
         }
         HastaneContext db= new HastaneContext();
         public IActionResult Index()
         {
+            ViewBag.Hastanelerimiz = _localization.Getkey("Hastanelerimiz").Value;
+            var currentCulture = Thread.CurrentThread.CurrentCulture.Name;
+
             var degerler = db.Hastane.Include(h=> h.Sehir).ToList();
             var degerler2 = db.Hastane.Include(h=> h.Ilceler).ToList();
-            
+
+           
+           // ViewBag.Welcome2 = _localization.Getkey("Hastane Randevusu Al").Value;
+            //ViewBag.Welcome3 = _localization.Getkey("Aile Hekimi Randevusu Al").Value;
+           // ViewBag.Welcome4 = _localization.Getkey("Hastanelerimiz").Value;
+           
+
             return View(degerler);
         }
+
+        //public IActionResult Index()
+        //{
+        //    ViewBag.Welcome = _localization.Getkey("Welcome").Value;
+        //    var currentCulture = Thread.CurrentThread.CurrentCulture.Name;
+        //    return View();
+        //}
+
+        public IActionResult ChangeLanguage(string culture)
+        {
+            Response.Cookies.Append(CookieRequestCultureProvider.DefaultCookieName,
+                CookieRequestCultureProvider.MakeCookieValue(new RequestCulture(culture)), new CookieOptions()
+                {
+                    Expires = DateTimeOffset.UtcNow.AddYears(1)
+                });
+            return Redirect(Request.Headers["Referer"].ToString());
+        }
+
+
         public ActionResult Cascading()
         {
             ViewBag.SehirList = new SelectList(ilgetir(), "SehirlerID", "SehirAd");
@@ -126,7 +158,7 @@ namespace HastaneRandevuSistemi.Controllers
             Randevu rande = new Randevu();
             var dataObject = JsonConvert.DeserializeObject<Randevu>(data);
             var kullaniciadi = User.Identity.Name;
-            var kullanici = db.Kullanici.FirstOrDefault(x => x.KullaniciTC == kullaniciadi);
+            var kullanici = db.Kullanici.FirstOrDefault(x => x.KullaniciAd == kullaniciadi);
             rande.KullaniciID = kullanici.KullaniciID;
             rande.DoktorID = dataObject.DoktorID;
             rande.RandevuTarih = dataObject.RandevuTarih;
