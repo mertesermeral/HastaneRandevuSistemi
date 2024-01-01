@@ -7,7 +7,7 @@ Bu projede Asp.Net Core 6 MVC ile hastane randevu sistemi oluşturulacaktır. <b
 # Kullanılan teknolojiler:
 • Asp.Net Core 6 MVC <br>
 • C# <br>
-• Veritabanı olarak SQL Server /PostgreSQL/ vb <br>
+• Veritabanı olarak SQL Server <br>
 • Entity Framework Core ORM <br>
 • Bootstrap Tema <br>
 • HTML5, CSS3, Javascript ve JQUERY <br>
